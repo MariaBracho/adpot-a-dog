@@ -1,6 +1,10 @@
-import { instance} from "../utils/apiKey"
+import { instance } from "../utils/apiKey";
 
-export default async function getDogs ({limit}={limit:5}){
-    const { data: listOfDogs } = await instance.get(`/images/search?limit=${limit}`)
-    return listOfDogs.map(({id,url})=>{return {url,image_id:id} })
+export default async function getDogs({ limit = 5 }) {
+  const { data: listOfDogs } = await instance.get(`/breeds?limit=${limit}`);
+  return listOfDogs.map(({ image, name, id }) => {
+    const url = image.url;
+    const image_id = image.id;
+    return { url, image_id, name, id };
+  });
 }

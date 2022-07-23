@@ -1,27 +1,29 @@
 import { useCallback, useEffect } from "react";
-import useDogsContext from "./useDogsContext";
 import getDogs from "../service/getDogs";
+import useDogsContext from "./useDogsContext";
 
-export default function useDogs() {
-  const { setListOfDogs, listOfDogs } = useDogsContext();
+export default function useListBreeds() {
+  const { listOfBreeds, setListOfBreeds } = useDogsContext();
+
+  console.log(listOfBreeds, "list of brees");
 
   const fetchListOfDogs = useCallback(() => {
     getDogs({ limit: 5 })
       .then((dogs = []) => {
         localStorage.setItem("listOfDogs", JSON.stringify(dogs));
-        setListOfDogs(dogs);
+        setListOfBreeds(dogs);
       })
       .catch((error) => {
         console.error(error);
       });
-  }, [setListOfDogs]);
+  }, [setListOfBreeds]);
 
   useEffect(() => {
-    const listOfDogsHasEmpty = listOfDogs.length === 0;
+    const listOfDogsHasEmpty = listOfBreeds.length === 0;
     if (listOfDogsHasEmpty) {
       fetchListOfDogs();
     }
-  }, [listOfDogs, fetchListOfDogs]);
+  }, [fetchListOfDogs, listOfBreeds]);
 
-  return { listOfDogs, fetchListOfDogs };
+  return { listOfBreeds, fetchListOfDogs };
 }

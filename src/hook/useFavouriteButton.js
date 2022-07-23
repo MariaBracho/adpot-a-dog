@@ -1,13 +1,19 @@
-import { useCallback, useEffect,useMemo,useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import useDogsContext from "../context/useDogsContext";
 import saveFavourite from "../service/saveFavourite";
-import deleteFavourites from "../service/deleteFavourite";
+import deleteFavourites from "../service/deleteFavourites";
+import useFavouriteDogs from "../context/useFavouriteDogs";
 
-
-export default function useFavouriteButton ({image_id}){
-    const { listOfFavoriteDogs, setListOfFavoriteDogs, listOfDogs } =
-    useDogsContext();
+export default function useFavouriteButton({ image_id }) {
   const [isFavouriteDog, setIsFavouriteDog] = useState(false);
+  const {
+    listOfFavoriteDogs,
+    listOfDogs,
+    listOfBreeds,
+    setListOfFavoriteDogs,
+  } = useDogsContext();
+  const [isFetch, setIsFecth] = useState(false);
+  useFavouriteDogs({ initialFetchDogs: isFetch });
 
   const favorite = useMemo(() => {
     const isFavorite = listOfFavoriteDogs?.some(
@@ -24,24 +30,22 @@ export default function useFavouriteButton ({image_id}){
     const favouriteToDelete = listOfFavoriteDogs.find(
       (elem) => elem.image_id === image_id
     );
-
     setListOfFavoriteDogs((elem) =>
       elem.filter((list) => list.id !== favouriteToDelete.id)
     );
-    await deleteFavourites(favouriteToDelete.id);
-  },[image_id,listOfFavoriteDogs,setListOfFavoriteDogs])
+    await deleteFavourites({ id: favouriteToDelete.id });
+  }, [image_id, listOfFavoriteDogs, setListOfFavoriteDogs]);
 
-  const addNewFavoriteDog =useCallback( async () => {
-    const DogFavourite = listOfDogs.filter((dog) => dog.image_id === image_id);
-    const favouriteId = await saveFavourite(image_id);
-    const addFavouriteDog = DogFavourite.map(({ url, image_id }) => ({
-      url,
-      image_id,
-      id: favouriteId,
-    }));
-
-    setListOfFavoriteDogs((list) => list.concat(addFavouriteDog));
-  },[image_id,listOfDogs,setListOfFavoriteDogs])
+  const addNewFavoriteDog = useCallback(async () => {
+    const dogFavourite = listOfDogs.filter((dog) => dog.image_id === image_id);
+    const dogFavouriteBreed = listOfBreeds.filter(
+      (dog) => dog.image_id === image_id
+    );
+    const isEmpety = dogFavourite.length === 0;
+    const addFavourite = isEmpety ? dogFavouriteBreed : dogFavourite;
+    setListOfFavoriteDogs((list) => list.concat(addFavourite));
+    await saveFavourite(image_id);
+  }, [image_id, listOfDogs, setListOfFavoriteDogs, listOfBreeds]);
 
   const handleList = useCallback(async () => {
     try {
@@ -52,12 +56,10 @@ export default function useFavouriteButton ({image_id}){
       await favoriteActionToExecute();
     } catch (error) {
       console.error(error);
+    } finally {
+      setIsFecth(true);
     }
-  },[addNewFavoriteDog,deleteFavoriteDog,isFavouriteDog])
+  }, [addNewFavoriteDog, deleteFavoriteDog, isFavouriteDog]);
 
-  const showEmogi =useMemo(()=>{const emogi=isFavouriteDog ? "❌" : "❤️"
-return emogi},[isFavouriteDog]);
-
-  return {handleList,showEmogi}
-
+  return { handleList, isFavouriteDog };
 }

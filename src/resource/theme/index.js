@@ -21,6 +21,7 @@ export const theme = extendTheme({
       fontSize: "18px",
       fontWeight: "bold",
       width: "210px",
+      margin: "10px",
     },
   },
 });

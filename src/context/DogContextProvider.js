@@ -11,16 +11,21 @@ export default function DogContextProvider({ children }) {
   const [listOfFavoriteDogs, setListOfFavoriteDogs] = useState(
     loadLocalListFavourite()
   );
+  const [listOfBreeds, setListOfBreeds] = useState([]);
+  const [listOfAdoptsDogs, setListOfAdoptsDogs] = useState([]);
 
   const statesValues = useMemo(() => {
-    console.log("render");
     return {
       listOfDogs,
       listOfFavoriteDogs,
+      listOfBreeds,
+      listOfAdoptsDogs,
+      setListOfAdoptsDogs,
+      setListOfBreeds,
       setListOfDogs,
       setListOfFavoriteDogs,
     };
-  }, [listOfDogs, listOfFavoriteDogs]);
+  }, [listOfDogs, listOfFavoriteDogs, listOfBreeds, listOfAdoptsDogs]);
 
   return (
     <DogContext.Provider value={statesValues}>{children}</DogContext.Provider>

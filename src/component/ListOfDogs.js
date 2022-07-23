@@ -9,12 +9,7 @@ export default function ListOfDogs({ params, title }) {
         <Text layerStyle="title">{title}</Text>
         {params.map(({ url, id, image_id }) => {
           return (
-            <DogCard
-              key={id ? id : image_id}
-              url={url}
-              id={id}
-              image_id={image_id}
-            />
+            <DogCard key={image_id} url={url} id={id} image_id={image_id} />
           );
         })}
       </Flex>

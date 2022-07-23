@@ -1,14 +1,14 @@
 import RouterNavigation from "../src/Navigation/RouterNavigation";
 import DogContextProvider from "./context/DogContextProvider";
-
+import { Box } from "@chakra-ui/react";
 
 function App() {
   return (
-    <div className="App">
-        <DogContextProvider>
-          <RouterNavigation />
-        </DogContextProvider>
-    </div>
+    <Box h="100vh">
+      <DogContextProvider>
+        <RouterNavigation />
+      </DogContextProvider>
+    </Box>
   );
 }
 

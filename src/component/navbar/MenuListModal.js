@@ -11,7 +11,7 @@ export default function MenuListModal({ ListOfMenu, onClick }) {
       })).map(({ route, id }) => {
         return (
           <ListItem key={id}>
-            <Link onClick={onClick} to={"/" + route}>
+            <Link onClick={onClick} to={"/" + route.toLowerCase()}>
               {route}
             </Link>
           </ListItem>
