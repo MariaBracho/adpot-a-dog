@@ -4,9 +4,5 @@ import useDogsContext from "../context/useDogsContext";
 
 export default function ListOfFavouriteDogs() {
   const { listOfFavoriteDogs } = useDogsContext();
-  return (
-    <>
-      <ListOfDogs params={listOfFavoriteDogs} title="Favourites" />
-    </>
-  );
+  return <ListOfDogs params={listOfFavoriteDogs} title="Favourites" />;
 }

@@ -8,6 +8,7 @@ const colors = {
     green: "#009B72",
     grayIcon: "#545454",
     blue: "#009DDC",
+    drawerShare: "#212121",
   },
 };
 
@@ -17,7 +18,7 @@ export const theme = extendTheme({
     title: {
       display: "flex",
       justifyContent: "flex-start",
-      color: "brand.green",
+      color: "brand.text",
       fontSize: "18px",
       fontWeight: "bold",
       width: "210px",

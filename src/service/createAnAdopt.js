@@ -6,6 +6,5 @@ export default async function CreateAnAdopt({ image_id, value = 0 }) {
     value: value,
     sub_id: "my-user-12345",
   });
-  console.log(data, "post");
   return data;
 }

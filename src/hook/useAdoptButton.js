@@ -1,9 +1,12 @@
 import { useMemo, useEffect, useCallback, useState } from "react";
+import { useToast } from "@chakra-ui/react";
+
 import useDogsContext from "../context/useDogsContext";
+
+import useAdoptDogs from "../context/useAdoptDog";
+
 import createAnAdopt from "../service/createAnAdopt";
 import deleteAdopt from "../service/deleteAdopt";
-import useAdoptDogs from "../context/useAdoptDog";
-import { useToast } from "@chakra-ui/react";
 
 export default function useAdoptButton({ image_id }) {
   const { setListOfAdoptsDogs, listOfAdoptsDogs } = useDogsContext();
@@ -12,7 +15,6 @@ export default function useAdoptButton({ image_id }) {
   useAdoptDogs({ initialFetchDogs: isFetch });
   const toast = useToast();
 
-  console.log(listOfAdoptsDogs, "adopt");
   const isAnAdoptDog = useMemo(() => {
     const isAdopt = listOfAdoptsDogs?.some((fav) => fav.image_id === image_id);
     return isAdopt;

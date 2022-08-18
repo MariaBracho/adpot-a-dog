@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
-import useDogsContext from "../context/useDogsContext";
 import saveFavourite from "../service/saveFavourite";
 import deleteFavourites from "../service/deleteFavourites";
 import useFavouriteDogs from "../context/useFavouriteDogs";
+import useDogsContext from "../context/useDogsContext";
 
 export default function useFavouriteButton({ image_id }) {
   const [isFavouriteDog, setIsFavouriteDog] = useState(false);

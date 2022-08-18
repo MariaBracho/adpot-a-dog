@@ -4,6 +4,7 @@ import FavouriteDog from "../page/FavouriteDogs";
 import SearchOfBreed from "../page/SearchOfBreeds";
 import Detail from "../page/Detail";
 import UploadDog from "../page/UploadDog";
+import UpladedDogs from "../page/UploadedDogs";
 
 export default function RouterNavigation() {
   return (
@@ -14,7 +15,8 @@ export default function RouterNavigation() {
         <Route path="home/:keyword" element={<SearchOfBreed />} />
         <Route path="favourites" element={<FavouriteDog />} />
         <Route path="detail/:image_id" element={<Detail />} />
-        <Route path="upload%20a%20dog" element={<UploadDog />} />
+        <Route path="upload_a_dog" element={<UploadDog />} />
+        <Route path="uploaded_dogs" element={<UpladedDogs />} />
       </Routes>
     </>
   );

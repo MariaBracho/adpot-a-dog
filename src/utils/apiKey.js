@@ -4,7 +4,6 @@ const URL_API = "https://api.thedogapi.com/v1";
 
 export const instance = axios.create({
   baseURL: URL_API,
-  headers: { "Content-Type": "multipart/form-data" },
 });
 
 instance.defaults.headers.common["X-API-KEY"] = API_KEY;

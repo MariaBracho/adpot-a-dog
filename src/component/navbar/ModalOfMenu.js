@@ -19,6 +19,7 @@ import MenuListModal from "./MenuListModal";
 
 export default function ModalOfMenu({ list, logo, correo, isLogin }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
     <>
       <IconButton

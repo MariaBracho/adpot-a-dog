@@ -1,6 +1,7 @@
 import React from "react";
 import { List, ListItem } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
+import formatRouter from "../../utils/formatRouter";
 
 export default function MenuListModal({ ListOfMenu, onClick }) {
   return (
@@ -9,9 +10,10 @@ export default function MenuListModal({ ListOfMenu, onClick }) {
         route,
         id,
       })).map(({ route, id }) => {
+        const location = formatRouter(route);
         return (
           <ListItem key={id}>
-            <Link onClick={onClick} to={"/" + route.toLowerCase()}>
+            <Link onClick={onClick} to={"/" + location}>
               {route}
             </Link>
           </ListItem>

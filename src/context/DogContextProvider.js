@@ -13,6 +13,7 @@ export default function DogContextProvider({ children }) {
   );
   const [listOfBreeds, setListOfBreeds] = useState([]);
   const [listOfAdoptsDogs, setListOfAdoptsDogs] = useState([]);
+  const [listOfDogsUpload, setListOfDogsUpload] = useState([]);
 
   const statesValues = useMemo(() => {
     return {
@@ -20,12 +21,20 @@ export default function DogContextProvider({ children }) {
       listOfFavoriteDogs,
       listOfBreeds,
       listOfAdoptsDogs,
+      listOfDogsUpload,
       setListOfAdoptsDogs,
       setListOfBreeds,
       setListOfDogs,
+      setListOfDogsUpload,
       setListOfFavoriteDogs,
     };
-  }, [listOfDogs, listOfFavoriteDogs, listOfBreeds, listOfAdoptsDogs]);
+  }, [
+    listOfDogs,
+    listOfDogsUpload,
+    listOfFavoriteDogs,
+    listOfBreeds,
+    listOfAdoptsDogs,
+  ]);
 
   return (
     <DogContext.Provider value={statesValues}>{children}</DogContext.Provider>

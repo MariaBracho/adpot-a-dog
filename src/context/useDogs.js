@@ -1,10 +1,14 @@
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import useDogsContext from "./useDogsContext";
 import getDogs from "../service/getDogs";
 
+const INITIAL_PAGE = 0;
+
 export default function useDogs() {
   const { setListOfDogs, listOfDogs } = useDogsContext();
+  const [page, setPage] = useState(INITIAL_PAGE);
 
+  console.log(INITIAL_PAGE, "page");
   const fetchListOfDogs = useCallback(() => {
     getDogs({ limit: 5 })
       .then((dogs = []) => {
@@ -17,11 +21,18 @@ export default function useDogs() {
   }, [setListOfDogs]);
 
   useEffect(() => {
+    if (INITIAL_PAGE === page) return;
+    getDogs({ limit: 5, page }).then((dogs = []) => {
+      setListOfDogs((elem) => elem.concat(dogs));
+    });
+  }, [page, setListOfDogs]);
+
+  useEffect(() => {
     const listOfDogsHasEmpty = listOfDogs.length === 0;
     if (listOfDogsHasEmpty) {
       fetchListOfDogs();
     }
   }, [listOfDogs, fetchListOfDogs]);
 
-  return { listOfDogs, fetchListOfDogs };
+  return { listOfDogs, fetchListOfDogs, setPage };
 }
