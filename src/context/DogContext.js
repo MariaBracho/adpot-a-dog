@@ -1,5 +1,5 @@
-import React from "react";
+import React from 'react'
 
-const DogContext=React.createContext({})
+const DogContext = React.createContext({})
 
 export default DogContext

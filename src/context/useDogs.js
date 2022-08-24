@@ -1,38 +1,37 @@
-import { useCallback, useEffect, useState } from "react";
-import useDogsContext from "./useDogsContext";
-import getDogs from "../service/getDogs";
+import { useCallback, useEffect, useState } from 'react'
+import useDogsContext from './useDogsContext'
+import getDogs from '../service/getDogs'
 
-const INITIAL_PAGE = 0;
+const INITIAL_PAGE = 0
 
-export default function useDogs() {
-  const { setListOfDogs, listOfDogs } = useDogsContext();
-  const [page, setPage] = useState(INITIAL_PAGE);
+export default function useDogs () {
+  const { setListOfDogs, listOfDogs } = useDogsContext()
+  const [page, setPage] = useState(INITIAL_PAGE)
 
-  console.log(INITIAL_PAGE, "page");
   const fetchListOfDogs = useCallback(() => {
-    getDogs({ limit: 5 })
+    getDogs({ limit: 6 })
       .then((dogs = []) => {
-        localStorage.setItem("listOfDogs", JSON.stringify(dogs));
-        setListOfDogs(dogs);
+        localStorage.setItem('listOfDogs', JSON.stringify(dogs))
+        setListOfDogs(dogs)
       })
       .catch((error) => {
-        console.error(error);
-      });
-  }, [setListOfDogs]);
+        console.error(error)
+      })
+  }, [setListOfDogs])
 
   useEffect(() => {
-    if (INITIAL_PAGE === page) return;
-    getDogs({ limit: 5, page }).then((dogs = []) => {
-      setListOfDogs((elem) => elem.concat(dogs));
-    });
-  }, [page, setListOfDogs]);
+    if (INITIAL_PAGE === page) return
+    getDogs({ limit: 6, page }).then((dogs = []) => {
+      setListOfDogs((elem) => elem.concat(dogs))
+    })
+  }, [page, setListOfDogs])
 
   useEffect(() => {
-    const listOfDogsHasEmpty = listOfDogs.length === 0;
+    const listOfDogsHasEmpty = listOfDogs.length === 0
     if (listOfDogsHasEmpty) {
-      fetchListOfDogs();
+      fetchListOfDogs()
     }
-  }, [listOfDogs, fetchListOfDogs]);
+  }, [listOfDogs, fetchListOfDogs])
 
-  return { listOfDogs, fetchListOfDogs, setPage };
+  return { listOfDogs, fetchListOfDogs, setPage }
 }

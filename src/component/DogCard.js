@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState } from 'react'
 import {
   Box,
   Container,
@@ -6,61 +6,62 @@ import {
   Image,
   Skeleton,
   Text,
-  useDisclosure,
-} from "@chakra-ui/react";
+  useDisclosure
+} from '@chakra-ui/react'
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom'
 
-import CardButton from "./CardButton";
-import ImgModal from "./ImgModal";
+import CardButton from './CardButton'
+import ImgModal from './ImgModal'
 
-export default function DogCard({
+export default function DogCard ({
   url,
   id,
   image_id,
   isDetail = true,
-  detail = [],
+  detail = []
 }) {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const [isLoad, setIsLoad] = useState(false);
-  const navigate = useNavigate();
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const [isLoad, setIsLoad] = useState(false)
+  const navigate = useNavigate()
 
   const styleGrid = useMemo(() => {
     return {
-      cursor: "pointer",
-      minWidth: "210px",
-      borderWidth: "1px",
-      borderRadius: "12px",
-      boxShadow: "md",
-      overflow: "hidden",
-      marginBottom: "20px",
-      minHeight: "200px",
-    };
-  }, []);
+      cursor: 'pointer',
+      minWidth: '210px',
+      borderWidth: '1px',
+      borderRadius: '12px',
+      boxShadow: 'md',
+      overflow: 'hidden',
+      marginBottom: '20px',
+      minHeight: '200px',
+      maxW: 'fit-content'
+    }
+  }, [])
 
   const goToDetail = () => {
-    navigate(`../detail/${image_id}`, { replace: true });
-  };
+    navigate(`../detail/${image_id}`, { replace: true })
+  }
 
   const loadImg = () => {
-    setIsLoad(true);
-  };
+    setIsLoad(true)
+  }
 
   const showModal = () => {
-    onOpen();
-  };
+    onOpen()
+  }
 
   const nameOfDog = () => {
     return detail.map(({ name }) => {
-      return name;
-    });
-  };
+      return name
+    })
+  }
 
   return (
     <Grid
       sx={styleGrid}
-      templateRows={isDetail ? "162px auto auto" : "262px auto auto"}
-      templateColumns={isDetail ? "210px" : "310px"}
+      templateRows={isDetail ? '162px auto auto' : '262px auto auto'}
+      templateColumns={isDetail ? '210px' : '310px'}
     >
       <ImgModal
         isOpen={isOpen}
@@ -93,13 +94,19 @@ export default function DogCard({
                 <Text>{breed_group}</Text>
                 <Text>{life_span}</Text>
               </Container>
-            );
+            )
           }
         )}
 
-      <Box display="flex" alignItems="center" p="10px">
+      <Box
+        display="flex"
+        alignItems="center"
+        paddingTop="16px"
+        paddingBottom="22px"
+        position="relative"
+      >
         <CardButton id={id} image_id={image_id} />
       </Box>
     </Grid>
-  );
+  )
 }

@@ -1,12 +1,5 @@
-import React from "react";
-import Navbar from "../component/navbar/Navbar";
-import ListOfBreed from "../component/ListOfBreed";
+import ListOfBreed from '../component/ListOfBreed'
 
-export default function SearchOfBreeds() {
-  return (
-    <>
-      <Navbar />
-      <ListOfBreed />
-    </>
-  );
+export default function SearchOfBreeds () {
+  return <ListOfBreed />
 }

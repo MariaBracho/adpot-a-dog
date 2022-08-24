@@ -8,24 +8,24 @@ import {
   ModalOverlay,
   ModalCloseButton,
   Button,
-  Link,
-} from "@chakra-ui/react";
-import { DownloadIcon } from "@chakra-ui/icons";
-import { useRef } from "react";
-//import { downloadImage } from "../utils";
+  Link
+} from '@chakra-ui/react'
+import { DownloadIcon } from '@chakra-ui/icons'
+import { useRef } from 'react'
+// import { downloadImage } from "../utils";
 
-export default function ImgModal({ isOpen, onClose, title, url, name }) {
-  const refElem = useRef();
+export default function ImgModal ({ isOpen, onClose, title, url, name }) {
+  const refElem = useRef()
 
   const downloadImg = async () => {
-    const proxy = " https://api.allorigins.win/raw?url=";
-    const response = await fetch(proxy + url);
-    const urlImg = await response.blob();
-    const objectURL = window.URL.createObjectURL(urlImg);
-    refElem.current.href = objectURL;
-    refElem.current.download = name;
-    refElem.current.target = "_blank";
-  };
+    const proxy = ' https://api.allorigins.win/raw?url='
+    const response = await fetch(proxy + url)
+    const urlImg = await response.blob()
+    const objectURL = window.URL.createObjectURL(urlImg)
+    refElem.current.href = objectURL
+    refElem.current.download = name
+    refElem.current.target = '_blank'
+  }
 
   return (
     <>
@@ -51,5 +51,5 @@ export default function ImgModal({ isOpen, onClose, title, url, name }) {
         </ModalContent>
       </Modal>
     </>
-  );
+  )
 }

@@ -1,10 +1,11 @@
-import { instance } from "../utils/apiKey";
+import { instance } from '../utils/apiKey'
 
-export default async function uploadImg({ file }) {
-  const formData = new FormData();
+export default async function uploadImg ({ file }) {
+  const formData = new FormData()
 
-  formData.append("file", file);
-  formData.append("sub_id", "my-user-12345");
+  formData.append('file', file)
+  formData.append('sub_id', 'my-user-12345')
 
-  await instance.post("/images/upload", formData);
+  const { status, data } = await instance.post('/images/upload', formData)
+  return { status, data }
 }

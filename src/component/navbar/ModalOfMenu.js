@@ -1,24 +1,35 @@
-import React from "react";
+import React from 'react'
 import {
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
+  Drawer,
+  DrawerBody,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerCloseButton,
   Button,
   IconButton,
   useDisclosure,
   Image,
   Text,
-  Center,
-} from "@chakra-ui/react";
-import { HamburgerIcon } from "@chakra-ui/icons";
-import MenuListModal from "./MenuListModal";
+  Center
+  , useBreakpointValue
+} from '@chakra-ui/react'
+import { HamburgerIcon } from '@chakra-ui/icons'
+import MenuListModal from './MenuListModal'
 
-export default function ModalOfMenu({ list, logo, correo, isLogin }) {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+export default function ModalOfMenu ({ list, logo, correo, isLogin }) {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+
+  const size = useBreakpointValue(
+    {
+      base: 'full',
+      sm: 'xs'
+    },
+    {
+      fallback: 'md'
+    }
+  )
 
   return (
     <>
@@ -34,19 +45,19 @@ export default function ModalOfMenu({ list, logo, correo, isLogin }) {
         m={4}
       />
 
-      <Modal onClose={onClose} size="full" isOpen={isOpen}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader display="flex" justifyContent="center">
+      <Drawer isOpen={isOpen} placement="left" onClose={onClose} size={size}>
+        <DrawerOverlay />
+        <DrawerContent>
+          <DrawerHeader display="flex" justifyContent="center">
             <Center w="100%">
               <Image src={logo} />
             </Center>
-          </ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
+          </DrawerHeader>
+          <DrawerCloseButton />
+          <DrawerBody>
             <MenuListModal ListOfMenu={list} onClick={onClose} />
-          </ModalBody>
-          <ModalFooter display="block">
+          </DrawerBody>
+          <DrawerFooter display="block">
             <Text color="brand.gray" marginBottom="10px">
               {correo}
             </Text>
@@ -58,9 +69,9 @@ export default function ModalOfMenu({ list, logo, correo, isLogin }) {
             >
               {isLogin}
             </Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
+          </DrawerFooter>
+        </DrawerContent>
+      </Drawer>
     </>
-  );
+  )
 }
