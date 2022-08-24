@@ -1,22 +1,22 @@
-import React, { useMemo } from "react";
-import { Image, Flex, Center } from "@chakra-ui/react";
-import ModalOfMenu from "./ModalOfMenu";
-import Logo from "../../assets/logo.svg";
+import React, { useMemo } from 'react'
+import { Image, Flex, Center } from '@chakra-ui/react'
+import ModalOfMenu from './ModalOfMenu'
+import Logo from '../../assets/logo.svg'
 
 // TODO: Move this to context when the backend has been ready for use, talk to @tech-lead about this
 const getModalProps = () => {
-  const LIST = ["Home", "Favourites", "Upload a dog", "Uploaded Dogs"];
+  const LIST = ['Home', 'Favourites', 'Upload a dog', 'Uploaded Dogs']
   const modalProps = {
     list: LIST,
     logo: Logo,
-    correo: "Example@gmail.com",
-    isLogin: "Log out",
-  };
-  return modalProps;
-};
+    correo: 'Example@gmail.com',
+    isLogin: 'Log out'
+  }
+  return modalProps
+}
 
-export default function Navbar() {
-  const modalProps = useMemo(getModalProps, []);
+export default function Navbar () {
+  const modalProps = useMemo(getModalProps, [])
   return (
     <Flex
       position="sticky"
@@ -33,5 +33,5 @@ export default function Navbar() {
         <Image src={Logo} />
       </Center>
     </Flex>
-  );
+  )
 }

@@ -1,19 +1,19 @@
-import React, { useMemo, useState } from "react";
-import DogContext from "./DogContext";
+import React, { useMemo, useState } from 'react'
+import DogContext from './DogContext'
 
 const loadLocalList = () =>
-  JSON.parse(localStorage.getItem("listOfDogs")) || [];
+  JSON.parse(localStorage.getItem('listOfDogs')) || []
 const loadLocalListFavourite = () =>
-  JSON.parse(localStorage.getItem("favouriteDogs")) || [];
+  JSON.parse(localStorage.getItem('favouriteDogs')) || []
 
-export default function DogContextProvider({ children }) {
-  const [listOfDogs, setListOfDogs] = useState(loadLocalList());
+export default function DogContextProvider ({ children }) {
+  const [listOfDogs, setListOfDogs] = useState(loadLocalList())
   const [listOfFavoriteDogs, setListOfFavoriteDogs] = useState(
     loadLocalListFavourite()
-  );
-  const [listOfBreeds, setListOfBreeds] = useState([]);
-  const [listOfAdoptsDogs, setListOfAdoptsDogs] = useState([]);
-  const [listOfDogsUpload, setListOfDogsUpload] = useState([]);
+  )
+  const [listOfBreeds, setListOfBreeds] = useState([])
+  const [listOfAdoptsDogs, setListOfAdoptsDogs] = useState([])
+  const [listOfDogsUpload, setListOfDogsUpload] = useState([])
 
   const statesValues = useMemo(() => {
     return {
@@ -26,17 +26,17 @@ export default function DogContextProvider({ children }) {
       setListOfBreeds,
       setListOfDogs,
       setListOfDogsUpload,
-      setListOfFavoriteDogs,
-    };
+      setListOfFavoriteDogs
+    }
   }, [
     listOfDogs,
     listOfDogsUpload,
     listOfFavoriteDogs,
     listOfBreeds,
-    listOfAdoptsDogs,
-  ]);
+    listOfAdoptsDogs
+  ])
 
   return (
     <DogContext.Provider value={statesValues}>{children}</DogContext.Provider>
-  );
+  )
 }

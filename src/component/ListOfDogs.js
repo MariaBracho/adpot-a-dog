@@ -1,14 +1,28 @@
-import React from "react";
-import DogCard from "./DogCard";
-import { Flex, Text } from "@chakra-ui/react";
+import React from 'react'
+import DogCard from './DogCard'
+import { Grid, Text, Box } from '@chakra-ui/react'
 
-export default function ListOfDogs({ params, title }) {
+export default function ListOfDogs ({ params, title }) {
   return (
-    <Flex direction="column" alignItems="center">
+    <Box>
       <Text layerStyle="title">{title}</Text>
-      {params.map(({ url, id, image_id }) => {
-        return <DogCard key={image_id} url={url} id={id} image_id={image_id} />;
-      })}
-    </Flex>
-  );
+
+      <Grid
+        maxW="80%"
+        margin="0 auto"
+        alignItems="center"
+        justifyItems="center"
+        templateColumns={{
+          lg: 'repeat(3, minmax(200px,1fr))',
+          md: 'repeat(2, minmax(210px,1fr))'
+        }}
+      >
+        {params.map(({ url, id, image_id }) => {
+          return (
+            <DogCard key={image_id} url={url} id={id} image_id={image_id} />
+          )
+        })}
+      </Grid>
+    </Box>
+  )
 }

@@ -1,10 +1,10 @@
-import { instance } from "../utils/apiKey";
+import { instance } from '../utils/apiKey'
 
-export default async function getFavourites() {
-  const { data: listOfDogs } = await instance.get(`/favourites`);
+export default async function getFavourites () {
+  const { data: listOfDogs } = await instance.get('/favourites')
   return listOfDogs.map((elemet) => {
-    const url = elemet.image.url;
-    const { id, image_id } = elemet;
-    return { url, id, image_id };
-  });
+    const url = elemet.image.url
+    const { id, image_id } = elemet
+    return { url, id, image_id }
+  })
 }
