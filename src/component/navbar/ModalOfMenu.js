@@ -12,8 +12,8 @@ import {
   useDisclosure,
   Image,
   Text,
-  Center
-  , useBreakpointValue
+  Center,
+  useBreakpointValue
 } from '@chakra-ui/react'
 import { HamburgerIcon } from '@chakra-ui/icons'
 import MenuListModal from './MenuListModal'

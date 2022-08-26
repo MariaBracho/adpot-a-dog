@@ -2,8 +2,8 @@ import React from 'react'
 import { FormControl, Select, Box } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom'
 import Options from './Options'
-import useDogsContext from '../context/useDogsContext'
-import formatRouter from '../utils/formatRouter'
+import useDogsContext from 'context/useDogsContext'
+import formatRouter from 'utils/formatRouter'
 
 export default function SearchDog () {
   const navigate = useNavigate()

@@ -1,12 +1,12 @@
 import { useMemo, useEffect, useCallback, useState } from 'react'
 import { useToast } from '@chakra-ui/react'
 
-import useDogsContext from '../context/useDogsContext'
+import useDogsContext from 'context/useDogsContext'
 
-import useAdoptDogs from '../context/useAdoptDog'
+import useAdoptDogs from 'context/useAdoptDog'
 
-import createAnAdopt from '../service/createAnAdopt'
-import deleteAdopt from '../service/deleteAdopt'
+import createAnAdopt from 'service/createAnAdopt'
+import deleteAdopt from 'service/deleteAdopt'
 
 export default function useAdoptButton ({ image_id }) {
   const { setListOfAdoptsDogs, listOfAdoptsDogs } = useDogsContext()

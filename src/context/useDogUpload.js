@@ -1,17 +1,26 @@
 import { useCallback, useEffect } from 'react'
-import getUploadImg from '../service/getUploadImg'
+import getUploadImg from 'service/getUploadImg'
 import useDogsContext from './useDogsContext'
 
 export default function useDogUpload ({ initialFetchDogs = true } = {}) {
-  const { listOfDogsUpload, setListOfDogsUpload } = useDogsContext()
+  const {
+    listOfDogsUpload,
+    setListOfDogsUpload,
+    isLoadListOfUploadedDogs,
+    setIsLoadListOfUploadedDogs
+  } = useDogsContext()
 
   const fetchListOfDogs = useCallback(() => {
-    getUploadImg({ limit: 5 })
+    setIsLoadListOfUploadedDogs(true)
+    getUploadImg()
       .then((dogs = []) => {
         setListOfDogsUpload(dogs)
       })
       .catch((error) => {
         console.error(error)
+      })
+      .finally(() => {
+        setIsLoadListOfUploadedDogs(false)
       })
   }, [setListOfDogsUpload])
 
@@ -19,5 +28,5 @@ export default function useDogUpload ({ initialFetchDogs = true } = {}) {
     if (initialFetchDogs) fetchListOfDogs()
   }, [fetchListOfDogs, initialFetchDogs])
 
-  return { listOfDogsUpload, fetchListOfDogs }
+  return { listOfDogsUpload, fetchListOfDogs, isLoadListOfUploadedDogs }
 }

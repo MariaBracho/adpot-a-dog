@@ -12,7 +12,6 @@ import {
 } from '@chakra-ui/react'
 import { DownloadIcon } from '@chakra-ui/icons'
 import { useRef } from 'react'
-// import { downloadImage } from "../utils";
 
 export default function ImgModal ({ isOpen, onClose, title, url, name }) {
   const refElem = useRef()
@@ -24,7 +23,6 @@ export default function ImgModal ({ isOpen, onClose, title, url, name }) {
     const objectURL = window.URL.createObjectURL(urlImg)
     refElem.current.href = objectURL
     refElem.current.download = name
-    refElem.current.target = '_blank'
   }
 
   return (
@@ -38,13 +36,13 @@ export default function ImgModal ({ isOpen, onClose, title, url, name }) {
           <ModalHeader>{title}</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Image h="100%" w="100%" src={url} alt="photo of dog" />
+            <Image h="100%" w="100%" src={url} alt={title} />
           </ModalBody>
           <ModalFooter>
             <Button marginRight="20px" onClick={onClose}>
               Close
             </Button>
-            <Link ref={refElem} onClick={downloadImg}>
+            <Link ref={refElem} target="_blank" onClick={downloadImg}>
               <DownloadIcon boxSize="26px" />
             </Link>
           </ModalFooter>

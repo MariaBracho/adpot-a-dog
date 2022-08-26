@@ -5,7 +5,7 @@ import Logo from '../../assets/logo.svg'
 
 // TODO: Move this to context when the backend has been ready for use, talk to @tech-lead about this
 const getModalProps = () => {
-  const LIST = ['Home', 'Favourites', 'Upload a dog', 'Uploaded Dogs']
+  const LIST = ['Home', 'Favourites', 'Upload a dog', 'Dogs Uploaded']
   const modalProps = {
     list: LIST,
     logo: Logo,

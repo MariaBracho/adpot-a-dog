@@ -1,15 +1,18 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import useDogsContext from './useDogsContext'
-import getDogs from '../service/getDogs'
+import getDogs from 'service/getDogs'
 
 const INITIAL_PAGE = 0
+const LIMIT = 6
 
 export default function useDogs () {
-  const { setListOfDogs, listOfDogs } = useDogsContext()
+  const { setListOfDogs, listOfDogs, setIsLoadListOfDogs } = useDogsContext()
   const [page, setPage] = useState(INITIAL_PAGE)
 
-  const fetchListOfDogs = useCallback(() => {
-    getDogs({ limit: 6 })
+  const fetchListOfDogs = () => {
+    setIsLoadListOfDogs(true)
+
+    return getDogs({ limit: LIMIT })
       .then((dogs = []) => {
         localStorage.setItem('listOfDogs', JSON.stringify(dogs))
         setListOfDogs(dogs)
@@ -17,21 +20,31 @@ export default function useDogs () {
       .catch((error) => {
         console.error(error)
       })
-  }, [setListOfDogs])
+      .finally(() => {
+        setIsLoadListOfDogs(false)
+      })
+  }
 
   useEffect(() => {
     if (INITIAL_PAGE === page) return
-    getDogs({ limit: 6, page }).then((dogs = []) => {
-      setListOfDogs((elem) => elem.concat(dogs))
-    })
-  }, [page, setListOfDogs])
+
+    setIsLoadListOfDogs(true)
+
+    getDogs({ limit: LIMIT, page })
+      .then((dogs = []) => {
+        setListOfDogs((current) => current.concat(dogs))
+      })
+      .finally(() => {
+        setIsLoadListOfDogs(false)
+      })
+  }, [page])
 
   useEffect(() => {
     const listOfDogsHasEmpty = listOfDogs.length === 0
     if (listOfDogsHasEmpty) {
       fetchListOfDogs()
     }
-  }, [listOfDogs, fetchListOfDogs])
+  }, [listOfDogs])
 
   return { listOfDogs, fetchListOfDogs, setPage }
 }

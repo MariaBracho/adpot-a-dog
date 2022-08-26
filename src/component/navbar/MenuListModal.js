@@ -1,7 +1,7 @@
 import React from 'react'
 import { List, ListItem } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
-import formatRouter from '../../utils/formatRouter'
+import formatRouter from 'utils/formatRouter'
 
 export default function MenuListModal ({ ListOfMenu, onClick }) {
   return (

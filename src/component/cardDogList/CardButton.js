@@ -1,16 +1,19 @@
 import React, { useMemo } from 'react'
 import { Box, Image, useDisclosure } from '@chakra-ui/react'
 import { useLocation } from 'react-router-dom'
-import useFavouriteButton from '../hook/useFavouriteButton'
-import useAdoptButton from '../hook/useAdoptButton'
-import useDeleteButton from '../hook/useDeleteButton'
-import heartIconFull from '../assets/heartIconFull.svg'
-import deleteIcon from '../assets/deleteIcon.svg'
-import heartIcon from '../assets/heartIcon.svg'
-import adoptFull from '../assets/VectoradoptFull.svg'
-import share from '../assets/share.svg'
-import adopt from '../assets/adopt.svg'
-import ShareDog from './ShareDog'
+
+import useFavouriteButton from 'hook/useFavouriteButton'
+import useAdoptButton from 'hook/useAdoptButton'
+import useDeleteButton from 'hook/useDeleteButton'
+
+import heartIconFull from 'assets/heartIconFull.svg'
+import deleteIcon from 'assets/deleteIcon.svg'
+import heartIcon from 'assets/heartIcon.svg'
+import adoptFull from 'assets/VectoradoptFull.svg'
+import share from 'assets/share.svg'
+import adopt from 'assets/adopt.svg'
+
+import ShareDog from 'component/socialMediaShare/ShareDog'
 
 export default function CardButton ({ image_id }) {
   const { handleList, isFavouriteDog } = useFavouriteButton({ image_id })
@@ -20,7 +23,7 @@ export default function CardButton ({ image_id }) {
   const location = useLocation()
 
   const isUploadedPage = useMemo(() => {
-    return location.pathname === '/uploaded_dogs'
+    return location.pathname === '/dogs_uploaded'
   }, [location])
 
   const hoverAnimation = useMemo(() => {

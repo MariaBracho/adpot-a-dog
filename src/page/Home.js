@@ -1,26 +1,26 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import SearchDog from '../component/SearchDog'
-import ListOfDogs from '../component/ListOfDogs'
-import useDogsContext from '../context/useDogsContext'
-import { Box } from '@chakra-ui/react'
-import useInfinity from '../component/useInfinity'
+import SearchDog from 'component/searchDog/SearchDog'
+import ListOfDogs from 'component/cardDogList/ListOfDogs'
+import useDogsContext from 'context/useDogsContext'
+import InfinityScroll from 'component/infinityScroll/InfinityScroll'
+import TitleLoadAndDescription from 'component/TitleLoadAndDescription'
 
 export default function Home () {
-  const elemRef = useRef()
-  useInfinity({ elemRef })
-  const { listOfDogs } = useDogsContext()
+  const { listOfDogs, isLoadListOfDogs } = useDogsContext()
 
   const navigate = useNavigate()
+
   useEffect(() => {
     navigate('../home', { replace: true })
   }, [navigate])
 
   return (
     <>
+      <TitleLoadAndDescription title="Home" loader={isLoadListOfDogs} />
       <SearchDog />
-      <ListOfDogs params={listOfDogs} />
-      <Box ref={elemRef}></Box>
+      <ListOfDogs listOfDogs={listOfDogs} />
+      <InfinityScroll />
     </>
   )
 }

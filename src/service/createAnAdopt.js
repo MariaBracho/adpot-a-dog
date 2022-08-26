@@ -1,4 +1,4 @@
-import { instance } from '../utils/apiKey'
+import { instance } from 'utils/apiKey'
 
 export default async function CreateAnAdopt ({ image_id, value = 0 }) {
   const { data } = await instance.post('/votes', {

@@ -1,4 +1,4 @@
-import { instance } from '../utils/apiKey'
+import { instance } from 'utils/apiKey'
 
 export default async function uploadImg ({ file }) {
   const formData = new FormData()

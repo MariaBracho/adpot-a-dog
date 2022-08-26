@@ -1,7 +1,7 @@
 import { Box, Text, Button, Grid, Image, Flex } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom'
-import imageDog from '../assets/dog.jpg'
-import pet from '../assets/pet.svg'
+import imageDog from 'assets/dog.jpg'
+import pet from 'assets/pet.svg'
 
 export default function PageNotFound () {
   const navigate = useNavigate()

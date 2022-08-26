@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import saveFavourite from '../service/saveFavourite'
-import deleteFavourites from '../service/deleteFavourites'
-import useFavouriteDogs from '../context/useFavouriteDogs'
-import useDogsContext from '../context/useDogsContext'
+import saveFavourite from 'service/saveFavourite'
+import deleteFavourites from 'service/deleteFavourites'
+// import useFavouriteDogs from 'context/useFavouriteDogs'
+import useDogsContext from 'context/useDogsContext'
 import { useToast } from '@chakra-ui/react'
 
 export default function useFavouriteButton ({ image_id }) {
@@ -13,8 +13,10 @@ export default function useFavouriteButton ({ image_id }) {
     listOfBreeds,
     setListOfFavoriteDogs
   } = useDogsContext()
-  const [isFetch, setIsFecth] = useState(false)
-  useFavouriteDogs({ initialFetchDogs: isFetch })
+  // const [isFetch, setIsFecth] = useState(false)
+
+  // useFavouriteDogs({ initialFetchDogs: isFetch })
+
   const toast = useToast()
 
   const favorite = useMemo(() => {
@@ -64,7 +66,7 @@ export default function useFavouriteButton ({ image_id }) {
     } catch (error) {
       console.error(error)
     } finally {
-      setIsFecth(true)
+      // setIsFecth(true)
     }
   }, [addNewFavoriteDog, deleteFavoriteDog, isFavouriteDog])
 

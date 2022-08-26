@@ -1,28 +1,38 @@
-import { useEffect, useCallback } from 'react'
-import getFavourites from '../service/getFavourite'
+import { useEffect } from 'react'
+import getFavourites from 'service/getFavourite'
 import useDogsContext from './useDogsContext'
 
-export default function useFavouriteDogs ({ initialFetchDogs = true }) {
-  const { listOfFavoriteDogs, setListOfFavoriteDogs } = useDogsContext()
+export default function useFavouriteDogs ({ initialFetch = true } = {}) {
+  const {
+    listOfFavoriteDogs,
+    setListOfFavoriteDogs,
+    setIsLoadListOfFavouriteDogs,
+    isLoadListOfFavouriteDogs
+  } = useDogsContext()
 
-  const fetchFavoritesDogs = useCallback(() => {
-    getFavourites()
+  const fetchFavoritesDogs = () => {
+    setIsLoadListOfFavouriteDogs(true)
+    return getFavourites()
       .then((favDogs = []) => {
-        localStorage.setItem('favouriteDogs', JSON.stringify(favDogs))
         setListOfFavoriteDogs(favDogs)
+        localStorage.setItem('favouriteDogs', JSON.stringify(favDogs))
       })
       .catch((error) => {
         console.error(error)
       })
-  }, [setListOfFavoriteDogs])
+      .finally(() => {
+        setIsLoadListOfFavouriteDogs(false)
+      })
+  }
 
   useEffect(() => {
-    if (initialFetchDogs) fetchFavoritesDogs()
-  }, [initialFetchDogs, fetchFavoritesDogs])
+    if (initialFetch) fetchFavoritesDogs()
+  }, [])
 
   return {
     listOfFavoriteDogs,
     setListOfFavoriteDogs,
-    fetchFavoritesDogs
+    fetchFavoritesDogs,
+    isLoadListOfFavouriteDogs
   }
 }

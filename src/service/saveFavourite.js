@@ -1,4 +1,4 @@
-import { instance } from '../utils/apiKey'
+import { instance } from 'utils/apiKey'
 
 export default async function saveFavourite (id) {
   const { data: listOfDogs } = await instance.post('/favourites', {

@@ -8,6 +8,7 @@ const colors = {
     green: '#009B72',
     grayIcon: '#545454',
     blue: '#009DDC',
+    grayDark: '#212121',
     drawerShare: '#212121'
   }
 }
@@ -22,7 +23,7 @@ export const theme = extendTheme({
       fontSize: '18px',
       fontWeight: 'bold',
       width: '100%',
-      margin: '10px'
+      my: '10px'
     }
   }
 })

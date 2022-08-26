@@ -1,10 +1,11 @@
 import React, { useMemo } from 'react'
 import { useParams } from 'react-router-dom'
-import uperCaseFormart from '../utils/uperCaseFormart'
+import uperCaseFormart from 'utils/uperCaseFormart'
 
-import useSearchButton from '../hook/useSearchBreeds'
+import useSearchButton from 'hook/useSearchBreeds'
 
-import ListOfDogs from './ListOfDogs'
+import ListOfDogs from '../cardDogList/ListOfDogs'
+import { Helmet } from 'react-helmet'
 
 export default function ListOfBreed () {
   const { keyword = '' } = useParams()
@@ -14,7 +15,11 @@ export default function ListOfBreed () {
   const breedTitle = uperCaseFormart(title)
   return (
     <>
-      <ListOfDogs params={listOfBreeds} title={breedTitle} />
+      <Helmet>
+        <title>{title} | Adopt a dog</title>
+        <meta name="description" content={title} />
+      </Helmet>
+      <ListOfDogs listOfDogs={listOfBreeds} title={breedTitle} />
     </>
   )
 }

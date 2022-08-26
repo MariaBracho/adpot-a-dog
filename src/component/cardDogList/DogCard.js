@@ -11,9 +11,10 @@ import {
 
 import { useNavigate } from 'react-router-dom'
 
-import CardButton from './CardButton'
-import ImgModal from './ImgModal'
+import useFavouriteDogs from 'context/useFavouriteDogs'
 
+import CardButton from 'component/cardDogList/CardButton'
+import ImgModal from './ImgModal'
 export default function DogCard ({
   url,
   id,
@@ -24,6 +25,9 @@ export default function DogCard ({
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [isLoad, setIsLoad] = useState(false)
   const navigate = useNavigate()
+  const { isLoadListOfFavouriteDogs } = useFavouriteDogs({
+    initialFetch: false
+  })
 
   const styleGrid = useMemo(() => {
     return {
@@ -70,7 +74,7 @@ export default function DogCard ({
         title="Dog image"
         name={nameOfDog()[0]}
       />
-      <Skeleton isLoaded={isLoad}>
+      <Skeleton isLoaded={isLoad && !isLoadListOfFavouriteDogs}>
         <Image
           onClick={isDetail ? goToDetail : showModal}
           src={url}

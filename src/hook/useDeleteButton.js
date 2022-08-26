@@ -1,8 +1,8 @@
 import { useCallback, useState } from 'react'
 import { useToast } from '@chakra-ui/react'
-import useDogsContext from '../context/useDogsContext'
-import useDogUpload from '../context/useDogUpload'
-import deleteUpload from '../service/delteUpload'
+import useDogsContext from 'context/useDogsContext'
+import useDogUpload from 'context/useDogUpload'
+import deleteUpload from 'service/delteUpload'
 
 export default function useDeleteButton ({ image_id }) {
   const { listOfDogsUpload, setListOfDogsUpload } = useDogsContext()

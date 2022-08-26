@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
-import useDogs from '../context/useDogs'
-import useNearScreen from '../hook/useNearScreen'
-import nextPage from '../utils/nextPage'
+import useDogs from 'context/useDogs'
+import useNearScreen from 'hook/useNearScreen'
+import nextPage from 'utils/nextPage'
 
 export default function useInfinity ({ elemRef }) {
   const { isNearScreen } = useNearScreen({ externalRef: elemRef })
