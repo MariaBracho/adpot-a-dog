@@ -5,8 +5,8 @@ import useDogsContext from 'context/useDogsContext'
 
 import useAdoptDogs from 'context/useAdoptDog'
 
-import createAnAdopt from 'service/createAnAdopt'
-import deleteAdopt from 'service/deleteAdopt'
+import createAnAdopt from 'services/createAnAdopt'
+import deleteAdopt from 'services/deleteAdopt'
 
 export default function useAdoptButton ({ image_id }) {
   const { setListOfAdoptsDogs, listOfAdoptsDogs, userId } = useDogsContext()

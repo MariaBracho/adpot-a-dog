@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { Box, Text } from '@chakra-ui/react'
-import { Helmet } from 'react-helmet'
+import TitleLoadAndDescription from 'component/TitleLoadAndDescription'
 
-import getDogImagesInfo from 'service/getImageInfo'
+import getDogImagesInfo from 'services/getImageInfo'
 import DogCard from './DogCard'
 
 export default function CardDetail () {
@@ -26,10 +26,7 @@ export default function CardDetail () {
 
   return (
     <>
-      <Helmet>
-        <title>Detail | Adopt a dog</title>
-        <meta name="description" content="Information" />
-      </Helmet>
+      <TitleLoadAndDescription loader={false} title="Detail" />
       <Box sx={styleProps}>
         <Text layerStyle="title" justifyContent="center">
           Information

@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from 'react'
 import useDogsContext from './useDogsContext'
-import getAdopts from 'service/getAdopts'
+import getAdopts from 'services/getAdopts'
 
 export default function useAdoptDogs ({ initialFetchDogs = false }) {
   const {

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import saveFavourite from 'service/saveFavourite'
-import deleteFavourites from 'service/deleteFavourites'
+import saveFavourite from 'services/saveFavourite'
+import deleteFavourites from 'services/deleteFavourites'
 import useDogsContext from 'context/useDogsContext'
 import { useToast } from '@chakra-ui/react'
 

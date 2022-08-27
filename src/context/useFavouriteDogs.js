@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import getFavourites from 'service/getFavourite'
+import getFavourites from 'services/getFavourite'
 import useDogsContext from './useDogsContext'
 
 export default function useFavouriteDogs ({ initialFetch = true } = {}) {

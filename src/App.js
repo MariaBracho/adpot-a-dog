@@ -1,22 +1,24 @@
-import RouterNavigation from 'Navigation/RouterNavigation'
-import DogContextProvider from 'context/DogContextProvider'
-import { Box } from '@chakra-ui/react'
-import Navbar from 'component/navbar/Navbar'
-import BackHome from 'component/BackHome/BackHome'
+// theme
+import { ChakraProvider } from '@chakra-ui/react'
+import { theme } from './resource/theme'
+
+// context
+import AppContextProvider from 'context/DogContextProvider'
+
+// app data hydration
 import HydrationWrapper from 'wrappers/HydrationWrapper'
 
-function App () {
+// navigation
+import AppNavigation from 'navigation/RouterNavigation'
+
+export default function App () {
   return (
-    <Box h="100vh">
-      <DogContextProvider>
+    <ChakraProvider theme={theme}>
+      <AppContextProvider>
         <HydrationWrapper>
-          <Navbar />
-          <BackHome />
-          <RouterNavigation />
+          <AppNavigation />
         </HydrationWrapper>
-      </DogContextProvider>
-    </Box>
+      </AppContextProvider>
+    </ChakraProvider>
   )
 }
-
-export default App

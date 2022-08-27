@@ -2,9 +2,9 @@ import React, { useMemo } from 'react'
 import { Box, Image, useDisclosure } from '@chakra-ui/react'
 import { useLocation } from 'react-router-dom'
 
-import useFavouriteButton from 'hook/useFavouriteButton'
-import useAdoptButton from 'hook/useAdoptButton'
-import useDeleteButton from 'hook/useDeleteButton'
+import useFavouriteButton from 'hooks/useFavouriteButton'
+import useAdoptButton from 'hooks/useAdoptButton'
+import useDeleteButton from 'hooks/useDeleteButton'
 
 import heartIconFull from 'assets/heartIconFull.svg'
 import deleteIcon from 'assets/deleteIcon.svg'

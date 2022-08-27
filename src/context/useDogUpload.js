@@ -1,5 +1,5 @@
 import { useCallback, useEffect } from 'react'
-import getUploadImg from 'service/getUploadImg'
+import getUploadImg from 'services/getUploadImg'
 import useDogsContext from './useDogsContext'
 
 export default function useDogUpload ({ initialFetchDogs = true } = {}) {
@@ -16,9 +16,6 @@ export default function useDogUpload ({ initialFetchDogs = true } = {}) {
     getUploadImg({ sub_id: userId })
       .then((dogs = []) => {
         setListOfDogsUpload(dogs)
-      })
-      .catch((error) => {
-        console.error(error)
       })
       .finally(() => {
         setIsLoadListOfUploadedDogs(false)

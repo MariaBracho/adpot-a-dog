@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import useDogs from 'context/useDogs'
-import useNearScreen from 'hook/useNearScreen'
+import useNearScreen from 'hooks/useNearScreen'
 import nextPage from 'utils/nextPage'
 
 export default function useInfinity ({ elemRef }) {

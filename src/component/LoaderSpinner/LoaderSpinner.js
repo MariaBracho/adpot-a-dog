@@ -2,7 +2,7 @@ import { Spinner, Grid } from '@chakra-ui/react'
 
 export default function LoaderSpinner () {
   return (
-    <Grid w="100%" h="100%" placeContent="center">
+    <Grid w="100vw" h="100vh" placeContent="center">
       <Spinner
         thickness="4px"
         speed="0.65s"

@@ -2,7 +2,7 @@ import React, { useMemo } from 'react'
 import { useParams } from 'react-router-dom'
 import uperCaseFormart from 'utils/uperCaseFormart'
 
-import useSearchButton from 'hook/useSearchBreeds'
+import useSearchButton from 'hooks/useSearchBreeds'
 
 import ListOfDogs from '../cardDogList/ListOfDogs'
 import { Helmet } from 'react-helmet'

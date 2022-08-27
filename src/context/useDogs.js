@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import useDogsContext from './useDogsContext'
-import getDogs from 'service/getDogs'
+import getDogs from 'services/getDogs'
 
 const INITIAL_PAGE = 0
 const LIMIT = 6
