@@ -1,8 +1,10 @@
 import { instance } from 'utils/apiKey'
 import { transformWithUuid } from 'utils/transformers'
 
-export default async function getFavourites () {
-  const { data: listOfDogs } = await instance.get('/favourites')
+export default async function getFavourites ({ sub_id }) {
+  const { data: listOfDogs } = await instance.get(
+    `/favourites?sub_id=${sub_id}`
+  )
   const translatedListOfDogs = listOfDogs
     .map((item) => {
       const {

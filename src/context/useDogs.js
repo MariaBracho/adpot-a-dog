@@ -14,7 +14,6 @@ export default function useDogs () {
 
     return getDogs({ limit: LIMIT })
       .then((dogs = []) => {
-        localStorage.setItem('listOfDogs', JSON.stringify(dogs))
         setListOfDogs(dogs)
       })
       .catch((error) => {

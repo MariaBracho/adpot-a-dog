@@ -15,7 +15,7 @@ export default function RouterNavigation () {
         <Route path="home" element={<Home />} />
         <Route path="home/:keyword" element={<SearchOfBreed />} />
         <Route path="favourites" element={<FavouriteDog />} />
-        <Route path="detail/:image_id" element={<Detail />} />
+        <Route path=":image_id" element={<Detail />} />
         <Route path="upload_a_dog" element={<UploadDog />} />
         <Route path="dogs_uploaded" element={<DogsUploaded />} />
         <Route path="*" element={<PageNotFound />} />

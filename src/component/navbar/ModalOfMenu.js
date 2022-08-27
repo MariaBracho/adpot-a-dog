@@ -57,7 +57,7 @@ export default function ModalOfMenu ({ list, logo, correo, isLogin }) {
           <DrawerBody>
             <MenuListModal ListOfMenu={list} onClick={onClose} />
           </DrawerBody>
-          <DrawerFooter display="block">
+          <DrawerFooter paddingBottom="58px" display="block">
             <Text color="brand.gray" marginBottom="10px">
               {correo}
             </Text>

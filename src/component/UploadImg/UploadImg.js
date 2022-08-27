@@ -10,8 +10,10 @@ import {
 } from '@chakra-ui/react'
 import UploadIcon from 'assets/Vectorupload.svg'
 import uploadImg from 'service/uploadImg'
+import useDogsContext from 'context/useDogsContext'
 
 export default function UploadImg () {
+  const { userId } = useDogsContext()
   const dragMessage = {
     onSide: 'Drop the file',
     outSide: 'Drag the file'
@@ -48,7 +50,6 @@ export default function UploadImg () {
 
   const uploadDog = (event) => {
     const [file] = event.target.files
-    console.log(file)
     const fileReader = new FileReader()
     fileReader.onload = () => {
       setUploadFile((lastFile) =>
@@ -60,7 +61,7 @@ export default function UploadImg () {
       )
     }
     fileReader.readAsDataURL(file)
-    uploadImg({ file }).then(onSuccess).catch(onError)
+    uploadImg({ file, sub_id: userId }).then(onSuccess).catch(onError)
   }
 
   const dragOver = (event) => {
@@ -77,7 +78,6 @@ export default function UploadImg () {
 
   const drop = (event) => {
     event.preventDefault()
-    console.log(event.dataTransfer.files, 'data')
     showFile(event.dataTransfer.files)
     setDragAndDropMessage(dragMessage.outSide)
     setIsActive(false)
@@ -89,7 +89,6 @@ export default function UploadImg () {
       processFile(event)
     } else {
       for (const file of event) {
-        console.log(file, 'desdes Showfile')
         processFile(file)
       }
     }
@@ -122,7 +121,7 @@ export default function UploadImg () {
   return (
     <Flex
       w="100%"
-      h="70%"
+      h="100%"
       direction="column"
       alignItems="center"
       justifyContent="center"
@@ -170,11 +169,10 @@ export default function UploadImg () {
       </Flex>
       <Grid
         templateColumns={{ base: '1fr', md: '1fr 1fr', lg: '1fr 1fr 1fr' }}
-        position="absolute"
-        top="480px"
-        my="12px"
         justifyItems="center"
         w="100%"
+        h="30%"
+        marginTop="18px"
       >
         {uploadFile.map((file, i) => {
           return (

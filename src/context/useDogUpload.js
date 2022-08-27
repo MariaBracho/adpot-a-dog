@@ -7,12 +7,13 @@ export default function useDogUpload ({ initialFetchDogs = true } = {}) {
     listOfDogsUpload,
     setListOfDogsUpload,
     isLoadListOfUploadedDogs,
-    setIsLoadListOfUploadedDogs
+    setIsLoadListOfUploadedDogs,
+    userId
   } = useDogsContext()
 
   const fetchListOfDogs = useCallback(() => {
     setIsLoadListOfUploadedDogs(true)
-    getUploadImg()
+    getUploadImg({ sub_id: userId })
       .then((dogs = []) => {
         setListOfDogsUpload(dogs)
       })

@@ -7,12 +7,13 @@ export default function useFavouriteDogs ({ initialFetch = true } = {}) {
     listOfFavoriteDogs,
     setListOfFavoriteDogs,
     setIsLoadListOfFavouriteDogs,
-    isLoadListOfFavouriteDogs
+    isLoadListOfFavouriteDogs,
+    userId
   } = useDogsContext()
 
   const fetchFavoritesDogs = () => {
     setIsLoadListOfFavouriteDogs(true)
-    return getFavourites()
+    return getFavourites({ sub_id: userId })
       .then((favDogs = []) => {
         setListOfFavoriteDogs(favDogs)
         localStorage.setItem('favouriteDogs', JSON.stringify(favDogs))

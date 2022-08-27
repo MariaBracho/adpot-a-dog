@@ -30,7 +30,7 @@ export default function SocialMedia () {
       <Link
         display="flex"
         alignItems="center"
-        href={`https://twitter.com/intent/tweet?text=text&url=${urlBase}`}
+        href={`https://twitter.com/intent/tweet?url=${urlBase}`}
         target="_blank"
       >
         <Image boxSize="60px" src={Twitter} />

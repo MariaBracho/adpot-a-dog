@@ -21,7 +21,7 @@ export default function useDeleteButton ({ image_id }) {
       elem.filter((list) => list.image_id !== favouriteToDelete.image_id)
     )
     toast({
-      title: 'you deleted a dog 😭, but I can add it again 😄',
+      title: 'you deleted a dog 😭, but you can add it again 😄',
       status: 'success',
       isClosable: true
     })

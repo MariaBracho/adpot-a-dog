@@ -9,7 +9,7 @@ import createAnAdopt from 'service/createAnAdopt'
 import deleteAdopt from 'service/deleteAdopt'
 
 export default function useAdoptButton ({ image_id }) {
-  const { setListOfAdoptsDogs, listOfAdoptsDogs } = useDogsContext()
+  const { setListOfAdoptsDogs, listOfAdoptsDogs, userId } = useDogsContext()
   const [isAdoptDog, setIsAdoptDog] = useState(false)
   const [isFetch, setIsFecth] = useState(false)
   useAdoptDogs({ initialFetchDogs: isFetch })
@@ -29,7 +29,7 @@ export default function useAdoptButton ({ image_id }) {
   }, [])
 
   const addNewAdoptDog = useCallback(async () => {
-    const resultId = await createAnAdopt({ image_id, value: 1 })
+    const resultId = await createAnAdopt({ image_id, value: 1, sub_id: userId })
     setListOfAdoptsDogs((elem) => elem.concat({ ...resultId, image_id }))
     toast({
       title: 'Congratulations you adopted a dog 🐶',

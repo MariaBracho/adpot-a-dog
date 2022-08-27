@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import saveFavourite from 'service/saveFavourite'
 import deleteFavourites from 'service/deleteFavourites'
-// import useFavouriteDogs from 'context/useFavouriteDogs'
 import useDogsContext from 'context/useDogsContext'
 import { useToast } from '@chakra-ui/react'
 
@@ -11,11 +10,9 @@ export default function useFavouriteButton ({ image_id }) {
     listOfFavoriteDogs,
     listOfDogs,
     listOfBreeds,
-    setListOfFavoriteDogs
+    setListOfFavoriteDogs,
+    userId
   } = useDogsContext()
-  // const [isFetch, setIsFecth] = useState(false)
-
-  // useFavouriteDogs({ initialFetchDogs: isFetch })
 
   const toast = useToast()
 
@@ -48,7 +45,7 @@ export default function useFavouriteButton ({ image_id }) {
     const isEmpety = dogFavourite.length === 0
     const addFavourite = isEmpety ? dogFavouriteBreed : dogFavourite
     setListOfFavoriteDogs((list) => list.concat(addFavourite))
-    await saveFavourite(image_id)
+    await saveFavourite({ id: image_id, userId })
     toast({
       title: 'Saved in favorite ❤',
       status: 'success',
@@ -65,8 +62,6 @@ export default function useFavouriteButton ({ image_id }) {
       await favoriteActionToExecute()
     } catch (error) {
       console.error(error)
-    } finally {
-      // setIsFecth(true)
     }
   }, [addNewFavoriteDog, deleteFavoriteDog, isFavouriteDog])
 

@@ -7,12 +7,13 @@ export default function useAdoptDogs ({ initialFetchDogs = false }) {
     setListOfAdoptsDogs,
     listOfAdoptsDogs,
     isLoadListOfAdoptDogs,
-    setIsLoadListOfAdoptDogs
+    setIsLoadListOfAdoptDogs,
+    userId
   } = useDogsContext()
 
   const fetchListOfDogs = useCallback(() => {
     setIsLoadListOfAdoptDogs(true)
-    getAdopts()
+    getAdopts({ sub_id: userId })
       .then((dogs = []) => {
         setListOfAdoptsDogs(dogs)
         localStorage.setItem('listOfAdoptDogs', JSON.stringify(dogs))

@@ -1,15 +1,18 @@
 import React, { useMemo, useState } from 'react'
 import DogContext from './DogContext'
 
-const loadLocalList = () => JSON.parse(localStorage.getItem('listOfDogs')) || []
 const loadLocalListFavourite = () =>
   JSON.parse(localStorage.getItem('favouriteDogs')) || []
 
 const loadLocalListOfAdoptDogs = () =>
   JSON.parse(localStorage.getItem('listOfAdoptDogs')) || []
 
+const userIdInit = () => JSON.parse(localStorage.getItem('userId')) || null
+
 export default function DogContextProvider ({ children }) {
-  const [listOfDogs, setListOfDogs] = useState(loadLocalList)
+  const [listOfDogs, setListOfDogs] = useState([])
+
+  const [userId, newUserId] = useState(userIdInit)
 
   const [listOfFavoriteDogs, setListOfFavoriteDogs] = useState(
     loadLocalListFavourite()
@@ -38,6 +41,8 @@ export default function DogContextProvider ({ children }) {
       listOfAdoptsDogs,
       listOfDogsUpload,
       isLoadListOfDogs,
+      userId,
+      newUserId,
       setIsLoadListOfDogs,
       setListOfAdoptsDogs,
       setListOfBreeds,

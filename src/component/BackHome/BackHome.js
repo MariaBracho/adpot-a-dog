@@ -9,8 +9,8 @@ export default function BackHome () {
     <Box position="sticky" top="60px">
       <ChevronLeftIcon
         onClick={() => window.history.back()}
-        h="30px"
-        w="30px"
+        h="40px"
+        w="40px"
         cursor="pointer"
         display={isHome ? 'none' : 'block'}
         m="10px 20px"

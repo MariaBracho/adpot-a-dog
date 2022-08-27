@@ -44,7 +44,7 @@ export default function DogCard ({
   }, [])
 
   const goToDetail = () => {
-    navigate(`../detail/${image_id}`, { replace: true })
+    navigate(`../${image_id}`, { replace: true })
   }
 
   const loadImg = () => {
