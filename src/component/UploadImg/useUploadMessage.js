@@ -1,9 +1,9 @@
 import { useToast } from '@chakra-ui/react'
 
-export default function uploadMessage () {
+export default function useUploadMessage () {
   const toast = useToast()
   return {
-    conSuccess: () => {
+    onSuccess: () => {
       toast({
         title: 'Upload a dog.',
         description: 'Congratulations you have uploaded a dog 🐶',
